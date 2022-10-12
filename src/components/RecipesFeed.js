@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import axios from 'axios'
+import {Link} from "react-router-dom"
 
 
 function RecipesFeed(){
@@ -28,7 +29,7 @@ function RecipesFeed(){
         {recipes.map(e => {
             return(
                 <div>
-                    <h3>{e.title}</h3>
+                    <Link to={`/recipe/${e._id}`}>{e.title}</Link>
                     <p>{e.description}</p>
                 </div>
             )

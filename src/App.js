@@ -11,6 +11,8 @@ import ProfilePage from './pages/ProfilePage';
 
 import IsAnon from './components/IsAnon';
 import IsPrivate from './components/IsPrivate';
+import SingleRecipePage from './pages/SingleRecipePage';
+import EditRecipePage from './pages/EditRecipePage';
 
 
 
@@ -51,6 +53,16 @@ function App() {
         <Route path="/profile" element={
           <IsPrivate>
             <ProfilePage />
+          </IsPrivate>
+        } />
+      <Route path="/recipe/:recipeId" element={
+          <IsPrivate>
+            <SingleRecipePage />
+          </IsPrivate>
+        } />
+      <Route path="/recipe/:recipeId/edit" element={
+          <IsPrivate>
+            <EditRecipePage />
           </IsPrivate>
         } />
       </Routes>

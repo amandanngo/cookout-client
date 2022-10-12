@@ -1,4 +1,5 @@
 import MyEvents from "../components/MyEvents";
+import MyRecipes from "../components/MyRecipes";
 
 
 function ProfilePage(){
@@ -8,6 +9,7 @@ function ProfilePage(){
             <h1>Profile</h1>
 
             <MyEvents />
+            <MyRecipes />
         </div>
     )
 }

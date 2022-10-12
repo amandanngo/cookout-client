@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 function MyEvents(){
 
     const [events, setEvents] = useState([])
 
-    const storedToken = localStorage.getItem('authToken');
+    const getEvents = () => {
 
-    useEffect(()=>{
+        const storedToken = localStorage.getItem('authToken');
 
         axios.get('http://localhost:3001/api/events',{
             headers: {
@@ -16,24 +16,27 @@ function MyEvents(){
             }
         })
             .then(res => {
-                console.log("res",res)
-
                 setEvents(res.data.events);
-                console.log('events',events)
             })
             .catch(err => console.log(err))
+    }
+
+    useEffect(()=>{
+        getEvents();
     },[])
 
 
     const deleteEvent = (eventId) => {
+        const storedToken = localStorage.getItem('authToken');
 
-        axios.delete(`http://localhost:3001/api/events`,{
+        axios.delete(`http://localhost:3001/api/events/${eventId}`,{
             headers: {
                 Authorization: `Bearer ${storedToken}`
             }
         })
             .then(res => {
                 console.log(res);
+                getEvents();
             })
             .catch(err => console.log(err))
     }

@@ -25,6 +25,7 @@ function Navbar(){
                     <Link to="/add-event">Add Event</Link>
                     <Link to="/add-recipe">Add Recipe</Link>
                     <Link to="/profile">Profile</Link>
+                    <button onClick={logOutUser} >Logout</button>
                 </>
 
            )}

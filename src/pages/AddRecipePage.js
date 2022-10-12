@@ -164,7 +164,7 @@ function AddEventPage(){
                 </div>
                 <div>
                     <button>
-                        Post Event
+                        Post Recipe
                     </button>
                 </div>
             </form>
