@@ -11,7 +11,7 @@ function RecipesFeed(){
     useEffect(()=>{
         const storedToken = localStorage.getItem('authToken');
 
-        axios.get('http://localhost:3001/api/recipes-feed',{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/recipes-feed`,{
             headers: {
                 Authorization: `Bearer ${storedToken}`
             }

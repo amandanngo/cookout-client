@@ -27,7 +27,7 @@ function AddEventPage(){
     const handleSubmit = event => {
       event.preventDefault();
       const storedToken = localStorage.getItem('authToken');
-      axios.post(`http://localhost:3001/api/events`, state, {
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/events`, state, {
         headers: {
           authorization: `Bearer ${storedToken}`
         }

@@ -10,7 +10,7 @@ function MyEvents(){
 
         const storedToken = localStorage.getItem('authToken');
 
-        axios.get('http://localhost:3001/api/events',{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/events`,{
             headers: {
                 Authorization: `Bearer ${storedToken}`
             }
@@ -29,7 +29,7 @@ function MyEvents(){
     const deleteEvent = (eventId) => {
         const storedToken = localStorage.getItem('authToken');
 
-        axios.delete(`http://localhost:3001/api/events/${eventId}`,{
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/events/${eventId}`,{
             headers: {
                 Authorization: `Bearer ${storedToken}`
             }

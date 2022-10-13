@@ -20,8 +20,8 @@ function SignUpPage(){
     
       const handleSubmit = event => {
         event.preventDefault();
-    
-        axios.post('http://localhost:3001/auth/signup', state)
+
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/signup`, state)
           .then(res => {
             console.log(res.data);
             navigate('/login')

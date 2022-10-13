@@ -10,7 +10,7 @@ function EventsFeed(){
     useEffect(()=>{
         const storedToken = localStorage.getItem('authToken');
 
-        axios.get('http://localhost:3001/api/events-feed',{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/events-feed`,{
             headers: {
                 Authorization: `Bearer ${storedToken}`
             }
@@ -31,7 +31,7 @@ function EventsFeed(){
         const storedToken = localStorage.getItem('authToken');
 
 
-        axios.put(`http://localhost:3001/api/events/${eventId}`,{
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/events/${eventId}`,{
             attendeeNum: attendeeNum+1,
             $push: {attendees: user._id}
         },{

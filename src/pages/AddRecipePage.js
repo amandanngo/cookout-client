@@ -75,7 +75,7 @@ function AddEventPage(){
 
         const storedToken = localStorage.getItem('authToken');
 
-        axios.post('http://localhost:3001/api/recipeImg',uploadData,{
+        axios.post('${process.env.REACT_APP_BACKEND_URL}/api/recipeImg',uploadData,{
             headers: {
               authorization: `Bearer ${storedToken}`
             }
@@ -93,7 +93,7 @@ function AddEventPage(){
 
       const storedToken = localStorage.getItem('authToken');
 
-      axios.post(`http://localhost:3001/api/recipes`, {
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/recipes`, {
         title: state.title,
         postedOn: new Date(),
         creator:  user._id,

@@ -14,7 +14,7 @@ function SingleRecipePage(){
     useEffect(()=>{
         const storedToken = localStorage.getItem('authToken');
 
-        axios.get(`http://localhost:3001/api/recipes/${recipeId}`,{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/recipes/${recipeId}`,{
             headers: {
                 Authorization: `Bearer ${storedToken}`
             }
