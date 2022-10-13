@@ -42,6 +42,7 @@ function SignUpPage(){
                         name="name"
                         value={state.name}
                         onChange={updateState}
+                        required
                     />
                 </div>
                 <div>
@@ -52,6 +53,7 @@ function SignUpPage(){
                         name="username"
                         value={state.username}
                         onChange={updateState}
+                        required
                     />
                 </div>
                     <div>
@@ -63,6 +65,7 @@ function SignUpPage(){
                         type="password"
                         value={state.password}
                         onChange={updateState}
+                        required
                     />
                 </div>
                 <div>

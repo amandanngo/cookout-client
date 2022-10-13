@@ -13,7 +13,7 @@ import IsAnon from './components/IsAnon';
 import IsPrivate from './components/IsPrivate';
 import SingleRecipePage from './pages/SingleRecipePage';
 import EditRecipePage from './pages/EditRecipePage';
-
+import LandingPage from './pages/LandingPage';
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
 
       <Navbar />
       <Routes>
-        <Route path="/" element={<h1>Hi</h1>} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={
           <IsAnon>
             <SignUpPage />

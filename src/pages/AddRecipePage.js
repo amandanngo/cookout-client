@@ -1,9 +1,7 @@
 import axios from 'axios';
-import { useState, useContext, useSyncExternalStore } from 'react';
+import { useState, useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/auth.context';
-
-
 
 function AddEventPage(){
 
@@ -16,7 +14,8 @@ function AddEventPage(){
       postedOn: '',
       creator: user._id,
       description: '',
-      servings: ''
+      servings: '',
+      imageUrl: ''
     });
 
     const [ingredients,setIngredients] = useState([])
@@ -62,15 +61,38 @@ function AddEventPage(){
         setDirections(copyDirections);
     }
   
-    const updateState = event => setState({
+    const updateState = (event) => setState({
       ...state,
       [event.target.name]: event.target.value
     });
-  
+
+    const [imageUrl, setImageUrl] = useState("");
+   
+    const handleFileUpload = (event) => {
+        const uploadData = new FormData();
+        
+        uploadData.append("imageUrl", event.target.files[0]);
+
+        const storedToken = localStorage.getItem('authToken');
+
+        axios.post('http://localhost:3001/api/recipeImg',uploadData,{
+            headers: {
+              authorization: `Bearer ${storedToken}`
+            }
+          })
+            .then(res => {
+                console.log('img upload', res.data.fileUrl)
+                setImageUrl(res.data.fileUrl);
+                // console.log('imgurl',imageUrl)
+            })
+            .catch(err => console.log)
+    }
+
     const handleSubmit = event => {
       event.preventDefault();
 
       const storedToken = localStorage.getItem('authToken');
+
       axios.post(`http://localhost:3001/api/recipes`, {
         title: state.title,
         postedOn: new Date(),
@@ -78,7 +100,8 @@ function AddEventPage(){
         description: state.description,
         servings: state.servings,
         ingredients: ingredients,
-        directions: directions
+        directions: directions,
+        imageUrl: imageUrl
       }, {
         headers: {
           authorization: `Bearer ${storedToken}`
@@ -161,6 +184,23 @@ function AddEventPage(){
                         )
                     })}
                     <button onClick={addDirection} >Add direction</button>
+                </div>
+                <div>
+                    <label>Image</label>
+
+                    {!imageUrl && (
+                       <input 
+                        id='file-input'
+                        type='file'
+                        name="imageUrl"
+                        value={state.imageUrl}
+                        onChange={(event) => handleFileUpload(event)}
+                        /> 
+                    )}
+                    
+                    {imageUrl && (
+                        <img id='recipe-img' src={imageUrl}/>
+                    )}
                 </div>
                 <div>
                     <button>
