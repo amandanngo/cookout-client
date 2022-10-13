@@ -43,9 +43,10 @@ function MyEvents(){
 
 
     return(
-        <div>
+        <div id="events-feed">
             <h2>Events</h2>
             {events.map((event) => {
+
                 return(
                     <div key={event._id}>
                         <p>{event.title}</p>

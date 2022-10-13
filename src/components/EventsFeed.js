@@ -40,31 +40,35 @@ function EventsFeed(){
             }
         })
             .then(res => {
-                // setEvents(events);
             })
             .catch(err => console.log(err))
     }
 
     return(
         <div>
-            <h2>Events</h2>
-
             {events.map((event) => {
 
                 let seatsLeft = event.attendeeLimit - event.attendeeNum;
+                let day = new Date(event.date).getDay();
+                let month = new Date (event.date).getMonth();
 
                 return(
-                    <div key={event._id}>
-                        <p>{event.title}</p>
-                        <p>Host: {event.host.username}</p>
-                        <p>When: {event.date}</p>
-                        <p>Where: {event.location}</p>
-                        <p>Seats left: {seatsLeft}</p>
-                        {seatsLeft > 0 && (
-                            <button onClick={()=>{
-                                claimSeat(event._id,event.attendeeNum)
-                            }}>Claim seat at the table</button>
-                        )}
+                    <div className='event-post' key={event._id}>
+                        <div>
+                            <h3>{event.title}</h3>
+                            <p>Host: {event.host.username}</p>
+                            <p>When: {day}/{month}</p>
+                            <p>Where: {event.location}</p>
+                        </div>
+                        <div>
+                            <p>Seats left: {seatsLeft}</p>
+                            {seatsLeft > 0 && (
+                                <button onClick={()=>{
+                                    claimSeat(event._id,event.attendeeNum)
+                                }}>Claim seat at the table</button>
+                            )}
+                        </div>
+                        
                     </div>
                 )
             })}

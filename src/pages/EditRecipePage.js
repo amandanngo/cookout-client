@@ -21,37 +21,50 @@ function EditRecipePage(){
         })
             .then(res => setRecipe(res.data.recipe))
             .catch(err => console.log(err))
-    },[])
+    },[recipeId])
 
     console.log('recipe: ', recipe)
 
-    const [state, setState] = useState({
-        title: '',
-        postedOn: '',
-        description: '',
-        servings: ''
-      });
+    const updateRecipe = event => setRecipe({
+        ...recipe,
+        [event.target.name]: event.target.value
+    });
 
-    console.log('state: ', state)
+    const updateIngredients = index => event =>{
+        const copyIngredients = [...recipe.ingredients]
+        copyIngredients[index] = event.target.value;
 
-    // const updateState = event => setState({
-    //     ...state,
-    //     [event.target.name]: event.target.value
-    //   });
+        setRecipe({
+            ...recipe,
+            ingredients: copyIngredients
+        })
+    }
+    const updateDirections = index => event =>{
+        const copyDirections = [...recipe.directions]
+        copyDirections[index] = event.target.value;
+
+        setRecipe({
+            ...recipe,
+            directions: copyDirections
+        })
+    }
+
 
     return(
         <div>
+            <div className="nav-banner"></div>
             <h2>Edit Recipe</h2>
-
-            <form>
+{ recipe && (
+     <form>
                 <div>
                     <label>
                         Recipe Title
                     </label>
                     <input
-                        // name="title"
-                        // value={state.title}
-                        // onChange={updateState}
+                        
+                        name="title"
+                        value={recipe.title}
+                        onChange={updateRecipe}
                     />
                     </div>
                 <div>
@@ -59,7 +72,10 @@ function EditRecipePage(){
                         Description
                     </label>
                     <input
-         
+                        
+                        name="description"
+                        value={recipe.description}
+                        onChange={updateRecipe}
                     />
                 </div>
                 <div>
@@ -67,15 +83,37 @@ function EditRecipePage(){
                         Servings
                     </label>
                     <input
-                 
+                        
+                        name="servings"
+                        value={recipe.servings}
+                        onChange={updateRecipe}
                     />
                 </div>
                 <div>
                     <p>Ingredients: </p>
-                  
+                    {recipe.ingredients.map((e,i) => {
+                        return(
+                            <div>
+                                <input
+                                    value={e}
+                                    onChange={updateIngredients(i)}
+                                ></input>
+                            </div>
+                        )
+                    })}
                 </div>
                 <div>
                     <p>Directions: </p>
+                    {recipe.directions.map((e,i) => {
+                        return(
+                            <div>
+                                <input
+                                    value={e}
+                                    onChange={updateDirections(i)}
+                                ></input>
+                            </div>
+                        )
+                    })}
                 </div>
                 <div>
                     <button>
@@ -85,6 +123,8 @@ function EditRecipePage(){
 
 
             </form>
+)}
+           
 
             
         </div>

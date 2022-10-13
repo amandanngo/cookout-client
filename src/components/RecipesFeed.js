@@ -25,15 +25,18 @@ function RecipesFeed(){
     return(
         <div>
         <h2>Recipes</h2>
-
-        {recipes.map(e => {
+        <div id='recipes-feed'>
+            {recipes.map(e => {
             return(
-                <div>
-                    <Link to={`/recipe/${e._id}`}>{e.title}</Link>
+                <div className='recipe-card'>
+                    <img src={e.pictureUrl} />
+                    <Link className='recipe-title' to={`/recipe/${e._id}`}>{e.title}</Link>
                     <p>{e.description}</p>
                 </div>
             )
-        })}
+            })}
+        </div>
+        
 
         </div>
     )

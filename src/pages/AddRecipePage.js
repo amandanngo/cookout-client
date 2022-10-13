@@ -15,7 +15,7 @@ function AddEventPage(){
       creator: user._id,
       description: '',
       servings: '',
-      imageUrl: ''
+      pictureUrl: ''
     });
 
     const [ingredients,setIngredients] = useState([])
@@ -66,12 +66,12 @@ function AddEventPage(){
       [event.target.name]: event.target.value
     });
 
-    const [imageUrl, setImageUrl] = useState("");
+    const [pictureUrl, setPictureUrl] = useState("");
    
     const handleFileUpload = (event) => {
         const uploadData = new FormData();
         
-        uploadData.append("imageUrl", event.target.files[0]);
+        uploadData.append("pictureUrl", event.target.files[0]);
 
         const storedToken = localStorage.getItem('authToken');
 
@@ -82,7 +82,7 @@ function AddEventPage(){
           })
             .then(res => {
                 console.log('img upload', res.data.fileUrl)
-                setImageUrl(res.data.fileUrl);
+                setPictureUrl(res.data.fileUrl);
                 // console.log('imgurl',imageUrl)
             })
             .catch(err => console.log)
@@ -101,7 +101,7 @@ function AddEventPage(){
         servings: state.servings,
         ingredients: ingredients,
         directions: directions,
-        imageUrl: imageUrl
+        pictureUrl: pictureUrl
       }, {
         headers: {
           authorization: `Bearer ${storedToken}`
@@ -116,7 +116,8 @@ function AddEventPage(){
 
 
     return(
-        <div>
+        <div id="create-recipe">
+            <div className="nav-banner"></div>
             <h2>Create a new Recipe</h2>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -150,7 +151,7 @@ function AddEventPage(){
                     />
                 </div>
                 <div>
-                    <p>Ingredients: </p>
+                    <label>Ingredients: </label>
                     {ingredients.map((e,i) => {
                         return (
                             <div>
@@ -168,7 +169,7 @@ function AddEventPage(){
                     <button onClick={addIngredient} >Add ingredient</button>
                 </div>
                 <div>
-                    <p>Directions: </p>
+                    <label>Directions: </label>
                     {directions.map((e,i) => {
                         return (
                             <div>
@@ -188,18 +189,22 @@ function AddEventPage(){
                 <div>
                     <label>Image</label>
 
-                    {!imageUrl && (
-                       <input 
-                        id='file-input'
-                        type='file'
-                        name="imageUrl"
-                        value={state.imageUrl}
-                        onChange={(event) => handleFileUpload(event)}
-                        /> 
+                    {!pictureUrl && (
+                        <label className='label'>
+                          <input 
+                            id='file-input'
+                            type='file'
+                            name="pictureUrl"
+                            value={state.pictureUrl}
+                            onChange={(event) => handleFileUpload(event)}
+                            />   
+                            <span>Upload image</span>
+                        </label>
+                       
                     )}
                     
-                    {imageUrl && (
-                        <img id='recipe-img' src={imageUrl}/>
+                    {pictureUrl && (
+                        <img id='recipe-img' src={pictureUrl}/>
                     )}
                 </div>
                 <div>

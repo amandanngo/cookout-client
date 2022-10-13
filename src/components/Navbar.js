@@ -11,23 +11,22 @@ function Navbar(){
         <nav>
 
             {! isLoggedIn && (
-                <>
-                    <Link to="/">Home</Link>
-                    <Link to="/signup">Sign Up</Link>
-                    <Link to="/login">Log in</Link> 
-                </>
+                <div id='loggedout-nav'>
+                    <Link className='nav-link' to="/">Home</Link>
+                    <Link className='nav-link' to="/signup">Sign Up</Link>
+                    <Link className='nav-link' to="/login">Log in</Link> 
+                </div>
                 
             )}
            
            {isLoggedIn && (
-                <>
-                    <Link to="/home">Home</Link>
-                    <Link to="/add-event">Add Event</Link>
-                    <Link to="/add-recipe">Add Recipe</Link>
-                    <Link to="/profile">Profile</Link>
+                <div id='loggedin-nav'>
+                    <Link className='nav-link' to="/add-recipe">Create Recipe</Link>
+                    <Link className='nav-link' to="/home">Home</Link>
+                    <Link className='nav-link' to="/add-event">Create Event</Link>
+                    <Link className='nav-link' to="/profile">Profile</Link>
                     <button onClick={logOutUser} >Logout</button>
-                </>
-
+                </div>
            )}
 
 

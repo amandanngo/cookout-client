@@ -41,7 +41,8 @@ function AddEventPage(){
 
 
     return(
-        <div>
+        <div id='create-event'>
+            <div className="nav-banner"></div>
             <h2>Create a new Event</h2>
             <form onSubmit={handleSubmit}>
                 <div>

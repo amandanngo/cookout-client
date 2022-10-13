@@ -1,5 +1,180 @@
+@font-face {
+  font-family: 'Berlin Sans FB';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Berlin Sans FB'), url('./styles/BRLNSB.woff') format('woff');
+  }
+@font-face {
+  font-family: 'Brittanic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Brittanic'), url('./styles/Brittanic.ttf') format('ttf');
+}
+
 .App {
   text-align: center;
+}
+#loggedout-nav{
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  color: white;
+  font-family: Berlin Sans FB;
+  font-size: 30px;
+}
+
+.nav-link{
+  color: white;
+  text-decoration: none;
+  margin: 20px 30px;
+}
+
+.nav-link:hover{
+  color: rgb(209, 76, 76);
+}
+
+#loggedin-nav{
+  position: fixed;
+  color: white;
+  font-family: Berlin Sans FB;
+  font-size: 30px;
+  left: 35.3%;
+  top: 20px;
+}
+
+#loggedin-nav .nav-link{
+  color: white;
+}
+
+#loggedin-nav button{
+  font-family: Berlin Sans FB;
+  font-size: 30px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+
+#landing-banner{
+  background: url('./images/landing_banner.jpg') 0 0 no-repeat;
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+}
+
+#banner-overlay{
+  background: rgba(46, 46, 46, 0.8);
+    overflow: hidden;
+    height: 100%;
+    z-index: 2;
+}
+
+#banner-overlay h1{
+  color: rgba(256,256,256,0.3);
+  font-family: Berlin Sans FB;
+  font-size: 100px;
+  margin: 200px;
+}
+
+#banner-overlay h3{
+  position: fixed;
+  left: 30px;
+  top: 20px;
+  text-align: left;
+  color: white;
+  font-family: Brittanic;
+  font-size: 40px;
+  margin: 0;
+}
+
+.nav-banner{
+  width: 100%;
+  height: 70px;
+  background-color: rgb(196, 72, 72);
+}
+
+#sign-up h1, #log-in h1{
+  font-family: Berlin Sans FB;
+  font-size: 60px;
+}
+#sign-up form, #log-in form{
+  border: 1px solid black;
+  width: 25%;
+  margin: 100px auto;
+  padding: 50px 0;
+}
+
+#sign-up label, #sign-up button, #log-in label, #log-in button{
+  font-family: Berlin Sans FB;
+  font-size: 30px;
+}
+
+#sign-up input, #log-in input{
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  padding: 5px 100px;
+  margin-bottom: 40px;
+  font-size: 20px;
+}
+
+
+#sign-up button, #log-in button{
+  background-color: white;
+  padding: 5px 20px;
+}
+
+#sign-up button:hover{
+  color:rgb(196, 72, 72)
+}
+
+#log-in button:hover{
+  color:rgb(196, 72, 72)
+}
+
+#create-recipe{
+  font-family: Berlin Sans FB;
+}
+
+#create-recipe label{
+  font-size: 25px;
+  display: block;
+}
+
+#create-recipe input{
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  padding: 3px 100px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#create-recipe button{
+  display: block;
+  margin: 10px auto;
+  background-color: white;
+  border-radius: 5px;
+  padding: 3px 10px;
+}
+
+label.label input[type="file"] {
+  position: absolute;
+  top: -1000px;
+}
+
+.label {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1px 0px;
+  margin: 5px auto;
+  background: white;
+  width: 140px;
+}
+
+.label span{
+  font-size: 18px;
 }
 
 #recipe-img{
@@ -8,7 +183,50 @@
   object-fit: cover;
 }
 
-#file-input{
-  
+
+#home button{
+  font-family: Berlin Sans FB;
+  font-size: 20px;
+  margin: 50px 20px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 3px 10px;
 }
 
+.recipe-card{
+  width: 300px;
+  border: 1px black solid;
+  margin: 20px 20px;
+}
+
+.recipe-card img{
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.recipe-title{
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+}
+
+.recipe-title:hover{
+  color:rgb(196, 72, 72);
+}
+
+#recipes-feed{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.event-post{
+  border: 1px solid black;
+  width: 30%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}

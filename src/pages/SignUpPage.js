@@ -31,7 +31,8 @@ function SignUpPage(){
       }
 
     return(
-        <div>
+        <div id="sign-up">
+            <div className="nav-banner"></div>
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -70,7 +71,7 @@ function SignUpPage(){
                 </div>
                 <div>
                     <button>
-                        Sign Up!
+                        Create Account
                     </button>
                 </div>
             </form>
