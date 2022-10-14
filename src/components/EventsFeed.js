@@ -7,7 +7,8 @@ function EventsFeed(){
 
     const [events, setEvents] = useState([])
 
-    useEffect(()=>{
+
+    const getEvents = () => {
         const storedToken = localStorage.getItem('authToken');
 
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/events-feed`,{
@@ -22,6 +23,10 @@ function EventsFeed(){
                 // console.log(events)
             })
             .catch(err => console.log(err))
+    }
+
+    useEffect(()=>{
+        getEvents();
     },[])
 
     const claimSeat = (eventId, attendeeNum) => {
@@ -40,6 +45,7 @@ function EventsFeed(){
             }
         })
             .then(res => {
+                getEvents();
             })
             .catch(err => console.log(err))
     }

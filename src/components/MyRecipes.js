@@ -45,14 +45,14 @@ function MyRecipes(){
 
     return(
         <div>
-            <h2>My Recipes</h2>
+            <h2>Recipes</h2>
 
             {recipes.map(e => {
                 return(
-                    <div key={e._id}>
-                        <h4>{e.title}</h4>
-                        <button onClick={()=>deleteRecipe(e._id)}>Delete</button>
-                        <button><Link to={`/recipe/${e._id}/edit`}>Edit</Link></button>
+                    <div className='profile-recipe' key={e._id}>
+                        <div><h2>{e.title}</h2></div>
+                        <div class='recipe-btn'><button><Link to={`/recipe/${e._id}/edit`}><a>Edit</a></Link></button></div>
+                        <div class='recipe-btn'><button onClick={()=>deleteRecipe(e._id)}>Delete</button></div>
                     </div>
                 )
             })}

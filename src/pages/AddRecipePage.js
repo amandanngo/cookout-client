@@ -75,7 +75,7 @@ function AddEventPage(){
 
         const storedToken = localStorage.getItem('authToken');
 
-        axios.post('${process.env.REACT_APP_BACKEND_URL}/api/recipeImg',uploadData,{
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/recipeImg`,uploadData,{
             headers: {
               authorization: `Bearer ${storedToken}`
             }
@@ -116,9 +116,8 @@ function AddEventPage(){
 
 
     return(
-        <div id="create-recipe">
+        <div className="create">
             <div className="nav-banner"></div>
-            <h2>Create a new Recipe</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>
@@ -154,37 +153,44 @@ function AddEventPage(){
                     <label>Ingredients: </label>
                     {ingredients.map((e,i) => {
                         return (
-                            <div>
-                                <label>- </label>
-                                <input 
+                            <div className='input-list'>
+                                <div>
+                                    <input 
                                     value={e} 
                                     onChange={updateIngredient(i)}
-                                />
-                                <button onClick={
+                                    /> 
+                                </div>
+                                <div>
+                                    <button className='delete-btn' onClick={
                                     deleteIngredient(i)
-                                }>X</button>
+                                    }>X</button>
+                                </div>     
                             </div>
                         )
                     })}
-                    <button onClick={addIngredient} >Add ingredient</button>
+                    <button className='add-btn' onClick={addIngredient} >Add ingredient</button>
                 </div>
                 <div>
                     <label>Directions: </label>
                     {directions.map((e,i) => {
                         return (
-                            <div>
-                                <label>{i+1}. </label>
-                                <input 
+                            <div className='input-list'>
+                                <div><label>{i+1}. </label></div>
+                                <div>
+                                   <input 
                                     value={e} 
                                     onChange={updateDirection(i)}
-                                />
-                                <button onClick={
-                                    deleteDirection(i)
-                                }>X</button>
+                                    /> 
+                                </div>
+                                <div>
+                                    <button className='delete-btn' onClick={
+                                        deleteDirection(i)
+                                    }>X</button>
+                                </div>
                             </div>
                         )
                     })}
-                    <button onClick={addDirection} >Add direction</button>
+                    <button className='add-btn' onClick={addDirection} >Add direction</button>
                 </div>
                 <div>
                     <label>Image</label>
@@ -204,11 +210,11 @@ function AddEventPage(){
                     )}
                     
                     {pictureUrl && (
-                        <img id='recipe-img' src={pictureUrl}/>
+                        <img id='recipe-img' src={pictureUrl} alt='food'/>
                     )}
                 </div>
-                <div>
-                    <button>
+                <div className='post-btn'>
+                    <button >
                         Post Recipe
                     </button>
                 </div>

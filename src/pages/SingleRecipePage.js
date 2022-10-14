@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
-import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 
 function SingleRecipePage(){
@@ -29,9 +28,28 @@ function SingleRecipePage(){
 
 
     return(
-        <div>
-            <h2>Single Recipe</h2>
-            <p>{recipe.title}</p>
+        <div id='single-recipe'>
+            <div className="nav-banner"></div>
+            <div id='single-recipe'>
+                
+                <h2>{recipe.title}</h2>
+                <img src={recipe.pictureUrl} />
+                <p>{recipe.description}</p>
+                <p><b>Servings:</b> {recipe.servings}</p>
+                <p><b>Ingredients: </b></p>
+                <ul>
+                    {recipe.ingredients.map(e =>{
+                        return <li>{e}</li>
+                    })}
+                </ul>
+                <p><b>Directions: </b></p>
+                <ul>
+                    {recipe.directions.map(e =>{
+                        return <li>{e}</li>
+                    })}
+                </ul>
+
+            </div>
         </div>
     )
 }

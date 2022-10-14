@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { useState, useContext, useSyncExternalStore, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AuthContext } from '../contexts/auth.context';
 
 
 
 function EditRecipePage(){
+
+    const navigate = useNavigate();
 
     const {recipeId} = useParams();
 
@@ -39,6 +40,29 @@ function EditRecipePage(){
             ingredients: copyIngredients
         })
     }
+
+    const addIngredient = (event) =>{
+        event.preventDefault();
+
+        const copyIngredients = [...recipe.ingredients,'']
+
+        setRecipe({
+            ...recipe,
+            ingredients: copyIngredients
+        })
+    }
+
+    const deleteIngredient = index => (event) =>{
+        event.preventDefault();
+        const copyIngredients = [...recipe.ingredients];
+
+        copyIngredients.splice(index,1);
+        setRecipe({
+            ...recipe,
+            ingredients: copyIngredients
+        })
+    }  
+
     const updateDirections = index => event =>{
         const copyDirections = [...recipe.directions]
         copyDirections[index] = event.target.value;
@@ -50,18 +74,57 @@ function EditRecipePage(){
     }
 
 
+    const addDirection = (event) =>{
+        event.preventDefault();
+
+        const copyDirections = [...recipe.directions,'']
+
+        setRecipe({
+            ...recipe,
+            directions: copyDirections
+        })
+    }
+
+    const deleteDirection = index => (event) =>{
+        event.preventDefault();
+        const copyDirections = [...recipe.directions];
+
+        copyDirections.splice(index,1);
+        setRecipe({
+            ...recipe,
+            directions: copyDirections
+        })
+    }  
+
+    const handleSubmit = event => {
+        event.preventDefault();
+
+        const storedToken = localStorage.getItem('authToken');
+
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/recipes/${recipeId}`,recipe,{
+            headers: {
+                authorization: `Bearer ${storedToken}`
+              } 
+        })
+            .then(res => {
+                console.log(res);
+                navigate('/profile')
+            })
+            .catch(err => console.log(err))
+
+    }
+
     return(
-        <div>
+        <div className='create'>
             <div className="nav-banner"></div>
             <h2>Edit Recipe</h2>
-{ recipe && (
-     <form>
+            { recipe && (
+                <form>
                 <div>
                     <label>
                         Recipe Title
                     </label>
                     <input
-                        
                         name="title"
                         value={recipe.title}
                         onChange={updateRecipe}
@@ -72,7 +135,6 @@ function EditRecipePage(){
                         Description
                     </label>
                     <input
-                        
                         name="description"
                         value={recipe.description}
                         onChange={updateRecipe}
@@ -90,43 +152,54 @@ function EditRecipePage(){
                     />
                 </div>
                 <div>
-                    <p>Ingredients: </p>
+                    <label>Ingredients: </label>
                     {recipe.ingredients.map((e,i) => {
                         return(
-                            <div>
-                                <input
-                                    value={e}
-                                    onChange={updateIngredients(i)}
-                                ></input>
+                            <div className='input-list'>
+                                <div>
+                                    <input
+                                        value={e}
+                                        onChange={updateIngredients(i)}
+                                    ></input>
+                                </div>
+                                <div>
+                                    <button className='delete-btn' onClick={
+                                        deleteIngredient(i)
+                                    }>X</button>
+                                </div>
                             </div>
                         )
                     })}
+                    <button onClick={addIngredient}>Add ingredient</button>
                 </div>
                 <div>
-                    <p>Directions: </p>
+                    <label>Directions: </label>
                     {recipe.directions.map((e,i) => {
                         return(
-                            <div>
-                                <input
-                                    value={e}
-                                    onChange={updateDirections(i)}
-                                ></input>
+                            <div className='input-list'>
+                                <div>
+                                    <input
+                                        value={e}
+                                        onChange={updateDirections(i)}
+                                    ></input>
+                                </div>
+                                <div>
+                                    <button className='delete-btn' onClick={
+                                        deleteDirection(i)
+                                    }>X</button>
+                                </div>
                             </div>
                         )
                     })}
+                    <button onClick={addDirection}>Add direction</button>
                 </div>
-                <div>
-                    <button>
-                        Post Recipe
+                <div className='post-btn'>
+                    <button onClick={handleSubmit}>
+                        Edit Recipe
                     </button>
                 </div>
-
-
             </form>
-)}
-           
-
-            
+        )}
         </div>
     )
 }

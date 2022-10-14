@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 function MyEvents(){
@@ -47,10 +46,14 @@ function MyEvents(){
             <h2>Events</h2>
             {events.map((event) => {
 
+                let day = new Date(event.date).getDay();
+                let month = new Date(event.date).getMonth();
+
+
                 return(
-                    <div key={event._id}>
-                        <p>{event.title}</p>
-                        <p>When: {event.date}</p>
+                    <div className='profile-event' key={event._id}>
+                        <h3>{event.title}</h3>
+                        <p>When: {day}/{month}</p>
                         <p>Where: {event.location}</p>
                         <p>Attendees:</p>
                         <ul>

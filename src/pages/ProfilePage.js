@@ -14,9 +14,8 @@ function ProfilePage(){
         setView('recipes')
     }
     return(
-        <div>
+        <div id="profile">
             <div className="nav-banner"></div>
-            <h1>Profile</h1>
             <button onClick={viewEvents}>Events</button>
             <button onClick={viewRecipes}>Recipes</button>
             {view === 'events' && (<MyEvents />)}

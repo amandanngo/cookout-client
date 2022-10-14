@@ -41,9 +41,8 @@ function AddEventPage(){
 
 
     return(
-        <div id='create-event'>
+        <div className='create'>
             <div className="nav-banner"></div>
-            <h2>Create a new Event</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>
@@ -86,7 +85,7 @@ function AddEventPage(){
                         onChange={updateState}
                     />
                 </div>
-                <div>
+                <div className='post-btn'>
                     <button>
                         Post Event
                     </button>

@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../contexts/auth.context';
 
@@ -36,7 +36,7 @@ function LogInPage(){
     return(
         <div id='log-in'>
             <div className='nav-banner'></div>
-            <h1>Log In</h1>
+            {/* <h1>Log In</h1> */}
             <form onSubmit={handleSubmit}>
                 <div>
                 <label>
