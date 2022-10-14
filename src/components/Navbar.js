@@ -21,18 +21,13 @@ function Navbar(){
            
            {isLoggedIn && (
                 <div id='loggedin-nav'>
+                    <Link className='nav-link' to="/home">Home</Link>
                     <Link className='nav-link' to="/add-recipe">Create Recipe</Link>
                     <Link className='nav-link' to="/add-event">Create Event</Link>
-                    <Link className='nav-link' to="/home">Home</Link>
-                    
                     <Link className='nav-link' to="/profile">Profile</Link>
                     <button onClick={logOutUser} >Logout</button>
                 </div>
            )}
-
-
-            
-
 
         </nav>
     )
