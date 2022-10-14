@@ -30,7 +30,7 @@
 }
 
 .nav-link:hover{
-  color: rgb(209, 76, 76);
+ color: rgb(72, 158, 122);
 }
 
 #loggedin-nav{
@@ -40,7 +40,7 @@
   font-size: 30px;
   left: 28%;
   top: 20px;
-  z-index: 2;
+  z-index: 1;
 }
 
 #loggedin-nav .nav-link{
@@ -94,6 +94,7 @@
   background-color: rgb(196, 72, 72);
   position: fixed;
   top: 0;
+  z-index: -1;
 }
 
 #sign-up h1, #log-in h1{
@@ -365,4 +366,21 @@ label.label input[type="file"] {
 #single-recipe li{
   list-style: square;
   width: 50%;
+}
+
+#about-us{
+  font-family: Brittanic;
+  margin-top: 300px;
+  margin-bottom: 300px;
+}
+
+#about-us h1{
+  font-size: 100px;
+  font-weight: 600;
+}
+
+#about-us p{
+  font-size: 40px;
+  width: 50%;
+  margin: 50px auto;
 }

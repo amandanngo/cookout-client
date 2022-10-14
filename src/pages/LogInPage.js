@@ -36,7 +36,6 @@ function LogInPage(){
     return(
         <div id='log-in'>
             <div className='nav-banner'></div>
-            {/* <h1>Log In</h1> */}
             <form onSubmit={handleSubmit}>
                 <div>
                 <label>
