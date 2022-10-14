@@ -38,9 +38,9 @@ function SingleRecipePage(){
                 <p><b>Servings:</b> {recipe.servings}</p>
                 <p><b>Ingredients: </b></p>
                 <ul>
-                    {recipe.ingredients.map(e =>{
+                       {recipe.ingredients.map(e =>{
                         return <li>{e}</li>
-                    })}
+                        })} 
                 </ul>
                 <p><b>Directions: </b></p>
                 <ul>

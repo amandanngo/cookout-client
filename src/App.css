@@ -355,8 +355,8 @@ label.label input[type="file"] {
 }
 
 #single-recipe ul{
-  width: 20%;
-  margin: 0 80% 0 43%;
+  width: 90%;
+  margin: 0 80% 0 25%;
 }
 
 #single-recipe p{
@@ -366,6 +366,7 @@ label.label input[type="file"] {
 #single-recipe li{
   list-style: square;
   width: 50%;
+  margin-top: 40px;
 }
 
 #about-us{
