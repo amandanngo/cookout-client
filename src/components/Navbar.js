@@ -9,13 +9,13 @@ function Navbar(){
 
     return(
         <nav>
-                <div id='loggedout-nav'>
+                
+            {!isLoggedIn && (
+               <div id='loggedout-nav'>
                     <Link className='nav-link' to="/">Home</Link>
                     <Link className='nav-link' to="/signup">Sign Up</Link>
                     <Link className='nav-link' to="/login">Log in</Link> 
                 </div>
-            {!isLoggedIn && (
-                <></>
             )}
            
            {isLoggedIn && (
