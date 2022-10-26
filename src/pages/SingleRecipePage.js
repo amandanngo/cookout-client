@@ -7,8 +7,7 @@ function SingleRecipePage(){
 
     const {recipeId} = useParams();
 
-    const [recipe,setRecipe] = useState([])
-
+    const [recipe, setRecipe] = useState(undefined)
 
     useEffect(()=>{
         const storedToken = localStorage.getItem('authToken');
@@ -19,36 +18,42 @@ function SingleRecipePage(){
             }
         })
             .then(res => {
-                console.log(res)
-                setRecipe(res.data.recipe)
+                setRecipe(res.data.recipe);
             })
             .catch(err => console.log(err))
     },[])
 
-
-
     return(
         <div id='single-recipe'>
             <div className="nav-banner"></div>
-            <div id='single-recipe'>
-                
-                <h2>{recipe.title}</h2>
-                <img src={recipe.pictureUrl} />
-                <p>{recipe.description}</p>
-                <p><b>Servings:</b> {recipe.servings}</p>
-                <p><b>Ingredients: </b></p>
-                <ul>
-                       {recipe.ingredients.map(e =>{
-                        return <li>{e}</li>
-                        })} 
-                </ul>
-                <p><b>Directions: </b></p>
-                <ul>
-                    {recipe.directions.map(e =>{
-                        return <li>{e}</li>
-                    })}
-                </ul>
+            <div className='single-recipe'>
 
+                {recipe && (
+                    <>
+                    <h2>{recipe.title}</h2>
+                    <img src={recipe.pictureUrl} alt={recipe.title}/>
+                    <p>{recipe.description}</p>
+                    <p><b>Servings:</b> {recipe.servings}</p>
+                    <p><b>Ingredients: </b></p>
+                    <ul>
+                        {recipe.ingredients.map((e,i) =>{
+                        return (
+                            <div key={i}>
+                                <li>{e}</li>
+                            </div>
+                        )
+                        })} 
+                    </ul>
+
+                    <p><b>Directions: </b></p>
+                    <ol>
+                        {recipe.directions.map(e =>{
+                            return <li>{e}</li>
+                        })}
+                    </ol>
+                    </>
+                )}
+        
             </div>
         </div>
     )

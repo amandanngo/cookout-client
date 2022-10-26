@@ -27,7 +27,7 @@ function RecipesFeed(){
         <div id='recipes-feed'>
             {recipes.map(e => {
             return(
-                <div className='recipe-card'>
+                <div key={e._id} className='recipe-card'>
                     <img src={e.pictureUrl} />
                     <Link className='recipe-title' to={`/recipe/${e._id}`}>{e.title}</Link>
                     <p>{e.description}</p>
